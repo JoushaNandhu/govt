@@ -84,7 +84,7 @@ def generate_study_material(topic, subtopic, client_type="openai"):
     try:
         if client_type == "openai" and client:
             response = client.chat.completions.create(
-                model="gpt-4o-mini",
+                model="gpt-4-turbo",
                 messages=[{"role": "system", "content": "You are an expert tutor for government exam preparation."},
                           {"role": "user", "content": prompt}],
                 max_tokens=2000
@@ -123,7 +123,7 @@ def generate_practice_questions(topic, subtopic, num_questions=5, client_type="o
     try:
         if client_type == "openai" and client:
             response = client.chat.completions.create(
-                model="gpt-4o-mini",
+                model="gpt-4-turbo",
                 messages=[{"role": "system", "content": "You are an expert question generator for government exams."},
                           {"role": "user", "content": prompt}],
                 max_tokens=2000
@@ -362,7 +362,7 @@ def login_ui():
                 st.session_state.current_user = username
                 load_user_data(username)
                 st.success("Login successful!")
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("Invalid username or password.")
                 
@@ -513,7 +513,7 @@ def main_app():
     elif menu == "Logout":
         st.session_state.current_user = None
         st.success("Logged out successfully!")
-        st.experimental_rerun()
+        st.rerun()
 
 # Main function
 def main():
